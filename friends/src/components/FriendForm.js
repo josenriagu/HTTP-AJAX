@@ -1,44 +1,68 @@
 import React from 'react';
 
-const FriendForm = ({ cNameHandler, cAgeHandler, cEmailHandler}) => {
+const FriendForm = props => {
+    const { editMode, changeHandler, addFriend, name, email, age, friendToEdit, updateFriend } = props;
+
+    const style = { display: (name !== "" && age !== "" && age !== 0 && email !== "") ? "initial" : "none" }
     return (
         <div className="friendform-wrapper">
-            <h4>Create Buddy</h4>
+            {
+                (editMode)
+                    ?
+                    <h4>Edit Buddy</h4>
+                    :
+                    <h4>Create Buddy</h4>
+            }
             <form className="form">
                 <div className="field">
-                    <label
-                        htmlFor="lfname">Name:</label><br />
+                    <span>Name: </span>
                     <input
-                        type="text"                        
-                        onChange={(event) => cNameHandler(event)}
-                        id="lfname"
-                        name="fname"
+                        type="text"
+                        value={name}
+                        onChange={(event) => changeHandler(event)}
+                        name="name"
+                        placeholder="enter buddy's name"
                         required
                     />
                 </div>
                 <div className="field">
-                    <label
-                        htmlFor="lfage">Age:</label><br/>
+                    <span>Age: </span>
                     <input
                         type="number"
-                        onChange={(event) => cAgeHandler(event)}
-                        id="lfage"
-                        name="fage"
+                        min="1"
+                        value={age}
+                        onChange={(event) => changeHandler(event)}
+                        name="age"
+                        placeholder="enter buddy's age"
                         required
                     />
                 </div>
                 <div className="field">
-                    <label
-                        htmlFor="lfmail">Email:</label><br/>
+                    <span>Email: </span>
                     <input
                         type="email"
-                        onChange={(event) => cEmailHandler(event)}
-                        id="lfmail"
-                        name="fmail"
+                        value={email}
+                        onChange={(event) => changeHandler(event)}
+                        name="email"
+                        placeholder="enter buddy's email"
                         required
                     />
                 </div>
-                <button>Create</button>
+                {
+                    (editMode)
+                        ?
+                        <button
+                            style={style}
+                            type="submit"
+                            onClick={(event) => updateFriend(event, friendToEdit.id)}
+                        >Update</button>
+                        :
+                        <button
+                            style={style}                            
+                            type="submit"
+                            onClick={(event) => addFriend(event)}
+                        >Create</button>
+                }
             </form>
         </div>
     );
