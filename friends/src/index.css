@@ -12,3 +12,56 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+button {
+  padding: .5rem .7rem;
+  margin: 0 .5rem;
+  border: .1rem solid gray;
+  border-radius: .2rem;
+  cursor: pointer;
+}
+.app-wrapper {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.6rem;
+}
+.app-section {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.friends-wrapper {
+  width: 70.5%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+.friendform-wrapper {
+  width: 28.5%;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+.friend {
+  width: calc(25.6% - 1rem);
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  word-wrap: break-word;
+  border: .1rem solid gray;
+  border-radius: .3rem;
+  cursor: pointer;
+}
+.friend:hover {
+  border: .1rem solid #c6930a;
+}
+.friend button:nth-of-type(1):hover {
+  border: .1rem solid blue;
+  background-color: #2772b5;
+  color: white;
+}
+.friend button:nth-of-type(2):hover {
+  border: .1rem solid red;
+  background-color: red;
+  color: white;
+}
