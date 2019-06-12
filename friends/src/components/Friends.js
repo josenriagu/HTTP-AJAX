@@ -1,12 +1,18 @@
 import React from 'react';
 
+// define sticky tag background colors
+const colors = ["#d5e9fc", "#dde3fc", "#dfc275", "#3daba0", "#fd25b0", "#82b3ff", "#f16304", "3de5e59", "#5cc1f2"];
+
 const Friends = ({ friendsList, setEdit, deleteFriend }) => {
     return (
         <div className="friends-wrapper">
             {
                 friendsList.map(friend => {
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const style = { backgroundColor: `${color}` }
                     return (
                         <div
+                            style={style}
                             key={friend.id}
                             className="friend"
                             draggable
