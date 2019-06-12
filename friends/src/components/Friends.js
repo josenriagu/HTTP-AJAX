@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Friends = ({ friendsList, setEdit }) => {
+const Friends = ({ friendsList, setEdit, deleteFriend }) => {
     return (
         <div className="friends-wrapper">
             {
@@ -9,6 +9,7 @@ const Friends = ({ friendsList, setEdit }) => {
                         <div
                             key={friend.id}
                             className="friend"
+                            draggable
                         >
                             <h3>Buddy {friend.id}</h3>
                             <p>Name: <span>{friend.name}</span></p>
@@ -17,12 +18,13 @@ const Friends = ({ friendsList, setEdit }) => {
                             <div className="action-button">
                                 <button
                                     type="button"
-                                    onClick={() => setEdit()}
+                                    onClick={() => setEdit(friend.id)}
                                 >
                                     Edit
                                     </button>
                                 <button
                                     type="button"
+                                    onClick={() => deleteFriend(friend.id)}
                                 >
                                     Delete
                                     </button>
