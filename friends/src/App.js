@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Route, NavLink } from 'react-router-dom';
+import Home from './components/Home';
 import Friends from './components/Friends';
 import FriendForm from './components/FriendForm';
 
@@ -51,10 +53,10 @@ export default class App extends Component {
   addFriend = event => {
     event.preventDefault()
     const { name, age, email } = this.state.form;
-    const list = this.state.friendsList;
-    const last = list[list.length - 1];
+    // const list = this.state.friendsList;
+    // const last = list[list.length - 1];
     const newFriend = {
-      id: last.id + 1,
+      // id: last.id + 1,
       name: name,
       age: Number(age),
       email: email
@@ -72,6 +74,7 @@ export default class App extends Component {
           friendToEdit: null,
         }))
       }).catch(err => console.log(err.message))
+    window.location.pathname = "/friends/list"
   }
 
   setEdit = (id) => {
@@ -110,6 +113,9 @@ export default class App extends Component {
           friendToEdit: null,
         }))
       }).catch(err => console.log(err.message))
+    alert('Friend Updated!')
+    // window.location.reload();
+    window.location.pathname = "/friends/list"
   }
 
   deleteFriend = id => {
@@ -124,20 +130,76 @@ export default class App extends Component {
   render() {
     return (
       <div className="app-wrapper">
-        <h1>My Buddies List</h1>
+        <section className="landing">
+          <h1>My Buddies List</h1>
+          <div className="naver">
+            <NavLink
+              exact
+              className="nav-link"
+              activeClassName="active"
+              to="/"
+            >
+              Home
+            </NavLink>
+            <NavLink
+              className="nav-link"
+              activeClassName="active"
+              to={
+                (this.state.editMode)
+                  ?
+                  "/friends/edit-friend"
+                  :
+                  "/friends/add-friend"
+              }
+            >
+              Add Friend
+            </NavLink>
+            <NavLink
+              className="nav-link"
+              activeClassName="active"
+              to="/friends/list"
+            >
+              View Friends
+            </NavLink>
+          </div>
+        </section>
+
         <section className="app-section">
-          <Friends
-            setEdit={this.setEdit}
-            deleteFriend={this.deleteFriend}
-            friendsList={this.state.friendsList}
+          <Route
+            exact
+            path="/"
+            render={Home}
           />
-          <FriendForm
-            addFriend={this.addFriend}
-            changeHandler={this.changeHandler}
-            editMode={this.state.editMode}
-            friendToEdit={this.state.friendToEdit}
-            updateFriend={this.updateFriend}
-            {...this.state.form}
+          <Route
+            path="/friends/list"
+            render={props =>
+              <Friends
+                {...props}
+                setEdit={this.setEdit}
+                deleteFriend={this.deleteFriend}
+                friendsList={this.state.friendsList}
+              />
+            }
+          />
+          <Route
+            path={
+              (this.state.editMode)
+                ?
+                "/friends/edit-friend"
+                :
+                "/friends/add-friend"
+            }
+            render={props =>
+              <FriendForm
+                {...props}
+                addFriend={this.addFriend}
+                changeHandler={this.changeHandler}
+                editMode={this.state.editMode}
+                friendToEdit={this.state.friendToEdit}
+                updateFriend={this.updateFriend}
+                {...this.state.form}
+              />
+            }
           />
         </section>
       </div>
