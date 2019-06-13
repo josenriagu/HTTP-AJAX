@@ -31,17 +31,34 @@ button {
   flex-direction: row-reverse;
   justify-content: space-between;
 }
+.nav-link {
+  padding: 0.5rem 0.7rem;
+  margin: 0 0.5rem;
+  border: 0.1rem solid gray;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  color:black;
+}
+.active {
+    border: 0.1rem solid #217735;
+  background-color: #c6930a;
+  color: white;
+}
+.home {
+  margin: 0 auto;
+}
 .friends-wrapper {
   width: 70.5%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 2rem;
+  margin: 2rem auto 0 auto;
   padding: 0 1rem;
 }
 .friendform-wrapper {
   width: 28.5%;
-  margin: 2rem 0 .5rem 0;
+  margin: 2rem auto .5rem auto;
   padding: 0 1rem;
 }
 .friend {
@@ -56,19 +73,19 @@ button {
 .friend:hover {
   border: 0.1rem solid #c6930a;
 }
-.friend button:nth-of-type(1) {
+.link button:nth-of-type(1) {
   border: 0.1rem solid blue;
   background-color: rgb(39, 114, 181, 0.3);
 }
-.friend button:nth-of-type(1):hover {
+.link button:nth-of-type(1):hover {
   background-color: rgb(39, 114, 181, 1);
   color: white;
 }
-.friend button:nth-of-type(2) {
+.friend button {
   border: 0.1rem solid red;
   background-color: rgb(221, 35, 35, 0.3);
 }
-.friend button:nth-of-type(2):hover {
+.friend button:hover {
   background-color: rgb(221, 35, 35, 1);
   color: white;
 }
