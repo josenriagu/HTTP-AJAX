@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // define sticky tag background colors
-const colors = ["#d5e9fc", "#dde3fc", "#dfc275", "#3daba0", "#fd25b0", "#82b3ff", "#f16304", "3de5e59", "#5cc1f2"];
+const colors = ["#d5e9fc", "#dde3fc", "#dfc275", "#3daba0", "#fd25b0", "#82b3ff", "#f16304", "3de5e59", "#5cc1f2", "#8892a0", "#517dbc", "#51b3bc", "#272d2d", "#48d673", "#98d648", "#7948d6", "#be38ea", "#af8956", "#d18779", "#470b20"];
 
 const Friends = ({ friendsList, setEdit, deleteFriend }) => {
     return (
@@ -22,12 +23,17 @@ const Friends = ({ friendsList, setEdit, deleteFriend }) => {
                             <p>Age: <span>{friend.age}</span></p>
                             <p>Email:<br></br><span>{friend.email}</span></p>
                             <div className="action-button">
-                                <button
-                                    type="button"
-                                    onClick={() => setEdit(friend.id)}
+                                <Link
+                                    to="/friends/edit-friend"
+                                    className="link"
                                 >
-                                    Edit
+                                    <button
+                                        type="button"
+                                        onClick={() => setEdit(friend.id)}
+                                    >
+                                        Edit
                                     </button>
+                                </Link>
                                 <button
                                     type="button"
                                     onClick={() => deleteFriend(friend.id)}
